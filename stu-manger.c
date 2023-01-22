@@ -1,13 +1,13 @@
-
-
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
 #include<time.h>
 #include<windows.h>
 #include <conio.h>
+
 #define KEY "7688399"
 #define SIZE 500
+
 void save();
 void input_message();
 void content();
@@ -35,6 +35,7 @@ void make_math(int c);
 void make_english(int c);
 void add_message();
 void keys();
+
 struct student
 {
 	char name[10];
@@ -46,7 +47,7 @@ struct student
 };
 
 struct student stud[SIZE];
-int m=0;
+int m = 0;
 
 void main()//-------------------主函数-------------------------
 {
@@ -54,24 +55,22 @@ void main()//-------------------主函数-------------------------
 
 	system("color 0e");
 
-	while(1)
-	{
-	content();
-	int a;
-	printf("请输入您的选项:");
-	scanf("%d",&a);
+	while(1) {
+        content();
+        int a;
+        printf("请输入您的选项:");
+        scanf("%d",&a);
 
-	switch(a)
-	{
-	case 1: input_message();break;
-	case 2: read_message();break;
-	case 3: serch();break;
-	case 4: sort_count();break;
-	case 5: delete_make();break;
-	case 6: add_message();break;
-	case 7: exit (0);
-	default:printf("error\n");exit(0);
-	}
+        switch(a) {
+            case 1: input_message();break;
+            case 2: read_message();break;
+            case 3: serch();break;
+            case 4: sort_count();break;
+            case 5: delete_make();break;
+            case 6: add_message();break;
+            case 7: exit (0);
+            default:printf("error\n");exit(0);
+        }
 
 	}
 	system("pause");
@@ -100,8 +99,7 @@ void input_message()//------------------------录入信息----------------------
 	int i,j;
 	char ch;
 
-	for(i=0;;i++)
-		{
+	for(i=0;;i++) {
 		printf("请输入学生姓名:");
         scanf("%s",stud[i].name);
         getchar();
@@ -134,22 +132,17 @@ void input_message()//------------------------录入信息----------------------
 				break;
         }
 		srand((int)time(0));
-		for(i=0;i<m;i++)
-
-		{
+		for(i=0;i<m;i++) {
 			stud[i].num=(rand()%1000)+2014000;
 		}
 
-		for(i=1;i<m;i++)
+		for(i=1;i<m;i++) {
+	     for(j=0;j<m-1;j++) {
+            if(stud[j].num==stud[i].num)
+                stud[i].num=(rand()%1000)+2014000;
+		}
 
-		{
-
-	     for(j=0;j<m-1;j++)
-				{
-					if(stud[j].num==stud[i].num)
-						stud[i].num=(rand()%1000)+2014000;
-				}
-        }
+    }
 
         save();
 		printf("录入完成!2秒后返回主菜单\n");
@@ -179,8 +172,8 @@ void content()//----------------------------输出目录------------------------
 void read_message()//-----------------------浏览信息------------------------------
 {
 
-		int i;
-		load();
+    int i;
+    load();
 
 	printf("姓名\t学号\t性别\tScience\tMath\tEnglish\t总分\t平均分\n");
 	for(i=0;i<m;i++)
@@ -188,8 +181,8 @@ void read_message()//-----------------------浏览信息------------------------
 		printf("%s\t%5d\t %c\t%3d\t%3d\t%3d\t%6.2f%\t%6.2f\n",stud[i].name,stud[i].num,stud[i].sex,stud[i].score[0],stud[i].score[1],stud[i].score[2],stud[i].sum,stud[i].ave);
 	}
 
-	    system("pause");
-		system("cls");
+    system("pause");
+    system("cls");
 }
 
 void serch()//--------------------查询功能-----------------------------
@@ -349,6 +342,7 @@ void sort_subject()//--------------------------------学科排序---------------
 	}
 
 }
+
 void science_sort()//----------------------------按计算机成绩排序----------------------------------------
 {
 	int i,j;
@@ -363,6 +357,7 @@ void science_sort()//----------------------------按计算机成绩排序-------
 			}
 		read_message();
 }
+
 void math_sort()//----------------------------按数学成绩排序----------------------------------------
 {
 	int i,j;
@@ -377,6 +372,7 @@ void math_sort()//----------------------------按数学成绩排序-------------
 			}
 		read_message();
 }
+
 void english_sort()//----------------------------按英语成绩排序----------------------------------------
 {
 	int i,j;
@@ -391,6 +387,7 @@ void english_sort()//----------------------------按英语成绩排序----------
 			}
 			read_message();
 }
+
 void count_subject()//------------------------------学科统计-----------------------------------------------
 {
     system("cls");
@@ -414,6 +411,7 @@ void count_subject()//------------------------------学科统计----------------
 	}
 
 }
+
 void science_count()//-----------------------------------统计计算机成绩------------------------------------------
 {
 
@@ -453,6 +451,7 @@ void science_count()//-----------------------------------统计计算机成绩--
 	printf("  \t%d\t%d\t%f\t%3d\t%3d\t%3d\t%3d\t%3d\n",max,min,ave,a,b,c,d,e);
 
 }
+
 void math_count()//-----------------------------------统计数学成绩------------------------------------------
 {
 	int max,min,i,sum=0;
@@ -492,6 +491,7 @@ void math_count()//-----------------------------------统计数学成绩--------
 
 
 }
+
 void english_count()//-----------------------------------统计英语成绩------------------------------------------
 {
 	int max,min,i,sum=0;
@@ -530,6 +530,7 @@ void english_count()//-----------------------------------统计英语成绩-----
 	printf("  \t%d\t%d\t%f\t%3d\t%3d\t%3d\t%3d\t%3d\n",max,min,ave,a,b,c,d,e);
 
 }
+
 void delete_make()//-------------------------删除与修改---------------------------------
 {
     system("cls");
@@ -557,6 +558,7 @@ void delete_make()//-------------------------删除与修改--------------------
 	system("pause");
 	system("cls");
 }
+
 void delete1()//-----------------------------删除功能---------------------------------
 {
     system("cls");
@@ -580,6 +582,7 @@ void delete1()//-----------------------------删除功能-----------------------
         save();
         read_message();
 }
+
 void id_delete()//----------------------按学号删除----------------
 {
     int a,i,j;
@@ -602,6 +605,7 @@ void id_delete()//----------------------按学号删除----------------
         printf("删除成功\n");
     }
 }
+
 void name_delete()//----------------按姓名删除----------
 {
     int i,j,flag=0;
@@ -632,6 +636,7 @@ void name_delete()//----------------按姓名删除----------
          printf("删除成功\n");
     }
 }
+
 void make()//--------------------------------修改功能------------------------------
 {
     system("cls");
@@ -650,24 +655,25 @@ void make()//--------------------------------修改功能-----------------------
             printf("不存在\n");
         else
         {
-        printf("--------------修改选项------------");
-		printf("        \n1 计算机成绩\n");
-		printf("        \n2 数学成绩\n");
-		printf("        \n3 英语成绩\n");
-		printf("----------------------------------\n");
-		printf("请输入要修改的学科的序号:");
+            printf("--------------修改选项------------");
+            printf("        \n1 计算机成绩\n");
+            printf("        \n2 数学成绩\n");
+            printf("        \n3 英语成绩\n");
+            printf("----------------------------------\n");
+            printf("请输入要修改的学科的序号:");
 
-		scanf("%d",&b);
-		switch(b)
-		{
-		case 1:make_science(c);break;
-		case 2:make_math(c);break;
-		case 3:make_english(c);break;
-		default:printf("error\n");
-		}
-		read_message();
+            scanf("%d",&b);
+            switch(b)
+            {
+                case 1:make_science(c);break;
+                case 2:make_math(c);break;
+                case 3:make_english(c);break;
+                default:printf("error\n");
+            }
+            read_message();
 		}
 }
+
 void make_science(int c)//--------------------------修改计算机成绩-----------------------------
 {
 	int a;
@@ -680,6 +686,7 @@ void make_science(int c)//--------------------------修改计算机成绩-------
 	printf("修改成功\n");
 
 }
+
 void make_math(int c)//-------------------------------修改数学成绩---------------------------
 {
 	int a;
@@ -692,6 +699,7 @@ void make_math(int c)//-------------------------------修改数学成绩--------
 	printf("修改成功\n");
 
 }
+
 void make_english(int c)//---------------------------修改英语成绩-----------------------------
 {
 
@@ -704,10 +712,11 @@ void make_english(int c)//---------------------------修改英语成绩---------
 	save();
 	printf("修改成功\n");
 }
+
 void add_message()//-------------------添加学生信息---------------------
 {
 
-		FILE *fp;
+	FILE *fp;
 	int i=0;
 	if((fp=fopen("stu.dat","ab"))==NULL)
 	{
@@ -716,69 +725,64 @@ void add_message()//-------------------添加学生信息---------------------
 	}
 	printf("请输入学生姓名:");
 
-			scanf("%s",stud[m].name);
-			getchar();
-			printf("请输入学生性别:");
-			scanf("%c",&stud[m].sex);
-			getchar();
-			printf("请输入计算机成绩:");
-			scanf("%d",&stud[m].score[0]);
-			getchar();
-			printf("请输入数学成绩:");
-			scanf("%d",&stud[m].score[1]);
-			getchar();
-			printf("请输入英语成绩:");
-			scanf("%d",&stud[m].score[2]);
-			getchar();
-			stud[m].sum=0;
-			stud[m].sum=stud[m].score[0]+stud[m].score[1]+stud[m].score[2];
-			stud[m].ave=stud[m].sum/3;
-			srand((int)time(0));
-		    stud[m].num=(rand()%1000)+2014000;
-		    for(i=m;i<=m;i++)
-		fwrite(&stud[i],sizeof(struct student),1,fp);
+    scanf("%s",stud[m].name);
+    getchar();
+    printf("请输入学生性别:");
+    scanf("%c",&stud[m].sex);
+    getchar();
+    printf("请输入计算机成绩:");
+    scanf("%d",&stud[m].score[0]);
+    getchar();
+    printf("请输入数学成绩:");
+    scanf("%d",&stud[m].score[1]);
+    getchar();
+    printf("请输入英语成绩:");
+    scanf("%d",&stud[m].score[2]);
+    getchar();
+    stud[m].sum=0;
+    stud[m].sum=stud[m].score[0]+stud[m].score[1]+stud[m].score[2];
+    stud[m].ave=stud[m].sum/3;
+    srand((int)time(0));
+    stud[m].num=(rand()%1000)+2014000;
+        for(i=m;i<=m;i++)
+    fwrite(&stud[i],sizeof(struct student),1,fp);
 
-		fclose(fp);m++;
+    fclose(fp);m++;
 
-			system("pause");
-			system("cls");
+    system("pause");
+    system("cls");
 }
+
 void keys()//----------------------------------密码---------------------
  {
      char a[20];
      char ch;
      int i=0,j;
-     for(j=0;j<3;j++)
-     {
-     printf("\t请输入密码 : ");
- 	 ch =getch();
- 	while((ch & 0xff) != 13)
- 	{
- 	    if ((ch == '\b'))
- 		{
- 		    printf("%c %c",ch,ch);
- 		    i--;
+     for(j=0;j<3;j++) {
+        printf("\t请输入密码 : ");
+        ch =getch();
+        while((ch & 0xff) != 13) {
+            if ((ch == '\b'))
+            {
+                printf("%c %c",ch,ch);
+                i--;
+            }
+            else
+            {
+                printf("*");;
+                a[i] = ch;
+                i++;
+            }
+            ch =getch();
         }
-        else
-        {
-            printf("*");;
-            a[i] = ch;
-            i++;
-        }
-    	ch =getch();
-    }
     	a[i]='\0';
 
-    	if (0==strcmp(KEY,a))
-    	{
+    	if (0==strcmp(KEY,a)) {
     	    printf("\n密码输入正确,两秒后进入系统\n");
     	    Sleep(2000);
     	    system("cls");
     	    break;
-        }
-
-        else
-        {
+        } else {
             printf("\n密码输入错误\n");
             i=0;
         }
@@ -786,11 +790,5 @@ void keys()//----------------------------------密码---------------------
      if(j==3)
      exit(0);
 }
-
-
-
-
-
-
 
 

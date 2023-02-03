@@ -51,8 +51,7 @@ int m = 0;
 
 void main()//-------------------主函数-------------------------
 {
-     keys();
-
+    keys();
 	system("color 0e");
 
 	while(1) {
@@ -96,10 +95,10 @@ void save()//----------------------信息存入磁盘------------------------
 
 void input_message()//------------------------录入信息------------------------
 {
-	int i,j;
+	int i, j;
 	char ch;
 
-	for(i=0;;i++) {
+	for (i = 0;; i++) {
 		printf("请输入学生姓名:");
         scanf("%s",stud[i].name);
         getchar();
@@ -121,20 +120,23 @@ void input_message()//------------------------录入信息----------------------
         getchar();
 
 		m++;
-        for(j=0;j<m;j++)
-			stud[i].sum=0;
+        for (j = 0; j < m; j++) {
+			stud[i].sum = 0;
+		}
         
 		stud[i].sum = stud[i].score[0] + stud[i].score[1] + stud[i].score[2];
 		stud[i].ave = stud[i].sum / 3;
 
 		printf("结束录入请输入y否则输入任意值\n");
 		ch = getchar();
-		if(ch=='y'||ch=='Y')
+		if (ch == 'y' || ch == 'Y') {
 			break;
+		}
+
     }
 
 	srand((int)time(0));
-	for(i=0;i<m;i++) {
+	for (i = 0; i < m; i++) {
 		stud[i].num=(rand()%1000)+2014000;
 	}
 

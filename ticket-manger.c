@@ -71,64 +71,39 @@ struct air s[20]; // 航班上线
 int m = 0; // 航班数
 
 int find();
-
 void make();
-
 void keys();
-
 void content();
-
 void booking();
-
 void save_flight();
-
 void load_flight();
-
 void input_message();
-
 void read_message();
-
 void place_search();
-
 void time_search();
-
 void cancelbook();
-
 void add_flight();
-
 void delete_flight();
-
 void search_flight();
-
 void read_passenger();
-
 void replace_print(int i);
-
 void make_starttime(int t);
-
 void make_arrivaltime(int t);
-
 void insertqueue(qnode head, char name[], int amount);
-
 void insertlink(linklist head, int amount, char name[], int grade);
 
 int main() //------------------------主函数-------------------------
 {
 
     keys();
-
     system("date /t");
-
     system("time /t");
-
     system("color 0e");
 
     while (1)
     {
         content();
-
         int a;
-
         printf("\n请输入您的选项:");
 
         scanf("%d", &a);
@@ -193,12 +168,10 @@ void save_flight() //----------------------航班信息存入磁盘-------------
     if ((fp = fopen("air.txt", "wb")) == NULL)
     {
         printf("文本不能打开，出错！\n");
-
         exit(0);
     }
 
     for (i = 0; i < m; i++)
-
         fwrite(&s[i], sizeof(struct air), 1, fp);
 
     fclose(fp);
@@ -207,24 +180,20 @@ void save_flight() //----------------------航班信息存入磁盘-------------
 void load_flight() //----------------------航班信息读入内存------------------------
 {
     FILE *fp;
-
     int i = 0;
 
     if ((fp = fopen("air.txt", "rb")) == NULL)
     {
         printf("文本不能打开，出错！\n");
-
         exit(0);
     }
 
     while (!feof(fp))
     {
         fread(&s[i], sizeof(struct air), 1, fp);
-
         i++;
     }
     m = i - 1;
-
     fclose(fp);
 }
 
@@ -236,56 +205,33 @@ void input_message()
     while (1)
     {
         printf("请输入航班号：");
-
         scanf("%s", s[i].num);
-
         printf("请输入起点站：");
-
         scanf("%s", s[i].start);
-
         printf("请输入终点站：");
-
         scanf("%s", s[i].over);
-
         printf("请输入起飞时间：");
-
         scanf("%s", s[i].starttime);
-
         printf("请输入预计到达时间：");
-
         scanf("%s", s[i].arrivaltime);
-
         printf("请输入一等舱价格：");
-
         scanf("%f", &s[i].price1);
-
         printf("请输入二等舱价格：");
-
         scanf("%f", &s[i].price2);
-
         printf("请输入三等舱价格：");
-
         scanf("%f", &s[i].price3);
-
         printf("请输入一等舱座位：");
-
         scanf("%d", &s[i].first_seat);
-
         printf("请输入二等舱座位：");
-
         scanf("%d", &s[i].second_seat);
-
         printf("请输入三等舱座位：");
-
         scanf("%d", &s[i].third_seat);
 
         m++;
         i++;
 
         getchar();
-
         printf("结束录入请输入y否则输入任意值\n");
-
         ch = getchar();
 
         if (ch == 'y' || ch == 'Y')
@@ -294,37 +240,29 @@ void input_message()
     srand((int)time(0));
 
     for (i = 0; i < m; i++)
-
         s[i].type = (rand() % 1000) + 2015000;
 
     for (i = 1; i < m; i++)
-
         for (j = 0; j < m - 1; j++)
         {
             if (s[j].type == s[i].type)
-
                 s[i].type = (rand() % 1000) + 2015000;
         }
 
     for (i = 0; i < m; i++)
     {
         s[i].book = (linklist)malloc(sizeof(booked));
-
         s[i].book->next = NULL;
-
         s[i].afterqueue = (qnode)malloc(sizeof(afterbook));
-
         s[i].afterqueue->next = NULL;
     }
 
     save_flight();
-
     printf("录入完成!2秒后返回主菜单\n");
-
     Sleep(2000);
-
     system("cls");
 }
+
 void content()
 {
     printf("*****************************航空客运订票系统********************************\n");
@@ -356,19 +294,12 @@ void read_message()
     for (i = 0; i < m; i++)
     {
         printf("\n");
-
         printf("航班号\t机型\t起点站\t终点站\t  起飞时间\t  \t预计到达时间\n");
-
         printf(" %s\t%ld\t%s\t%s\t%s\t%s\n", s[i].num, s[i].type, s[i].start, s[i].over, s[i].starttime, s[i].arrivaltime);
-
         printf("\n");
-
         printf("一等票\t二等票\t三等票\t   一等舱余座\t   二等舱余座\t   三等舱余座\n");
-
         printf("%5.2f\t%5.2f\t%5.2f\t\t%d\t\t%d\t\t%d\n", s[i].price1, s[i].price2, s[i].price3, s[i].first_seat, s[i].second_seat, s[i].third_seat);
-
         printf("\n");
-
         printf("*****************************************************************************\n");
     }
 
@@ -379,19 +310,12 @@ void read_message()
 void replace_print(int i)
 {
     printf("\n");
-
     printf("航班号\t机型\t起点站\t终点站\t  起飞时间\t  \t预计到达时间\n");
-
     printf(" %s\t%ld\t%s\t%s\t%s\t%s\n", s[i].num, s[i].type, s[i].start, s[i].over, s[i].starttime, s[i].arrivaltime);
-
     printf("\n");
-
     printf("一等票\t二等票\t三等票\t   一等舱余座\t   二等舱余座\t   三等舱余座\n");
-
     printf("%5.2f\t%5.2f\t%5.2f\t\t%d\t\t%d\t\t%d\n", s[i].price1, s[i].price2, s[i].price3, s[i].first_seat, s[i].second_seat, s[i].third_seat);
-
     printf("\n");
-
     printf("*****************************************************************************\n");
 }
 
@@ -403,15 +327,10 @@ void search_flight()
     load_flight();
 
     printf("*****************************************************************************\n");
-
     printf("\n");
-
     printf("\t1 按站点查询\t");
-
     printf("\t2 按出发时间查询\n");
-
     printf("\n");
-
     printf("*****************************************************************************\n");
 
     printf("请输入您的选项：");
@@ -457,7 +376,6 @@ void place_search()
             if (strcmp(s[i].over, b) == 0)
             {
                 flag = 1;
-
                 replace_print(i);
             }
     }
@@ -479,7 +397,6 @@ void time_search()
     printf("请输入要查询的日期按回车结束格式如（2015-06-14）：");
 
     scanf("%s", b);
-
     printf("您要查询的日期为：%s\n", b);
 
     for (i = 0; i < m; i++)
@@ -490,12 +407,10 @@ void time_search()
         if (strcmp(b, a) == 0)
         {
             flag = 1;
-
             replace_print(i);
         }
     }
     if (!flag)
-
         printf("不存在\n");
 
     system("pause");
@@ -511,15 +426,10 @@ void booking()
     d = find(); // printf("%4d\t%d",s[d].afterqueue,d);
 
     printf("请输入您的姓名：");
-
     scanf("%s", name);
-
     printf("请输入你要选择的舱的等级输入数字（1,2,3）按回车结束：");
-
     scanf("%d", &rank);
-
     printf("请输入您要订票的数量:");
-
     scanf("%d", &num);
 
     switch (rank)
@@ -529,9 +439,7 @@ void booking()
         {
             s[d].first_seat -= num;
             save_flight();
-
             insertlink(s[d].book, num, name, rank);
-
             printf("订票成功！\n");
         }
 
@@ -545,7 +453,6 @@ void booking()
             if (ch == 'y' || ch == 'Y')
             {
                 insertqueue(s[d].afterqueue, name, num);
-
                 printf("排队成功\n");
             }
             else
@@ -559,9 +466,7 @@ void booking()
         {
             s[d].second_seat -= num;
             save_flight();
-
             insertlink(s[d].book, num, name, rank);
-
             printf("订票成功！\n");
         }
 
@@ -575,11 +480,9 @@ void booking()
             if (ch == 'y' || ch == 'Y')
             {
                 insertqueue(s[d].afterqueue, name, num);
-
                 printf("排队成功\n");
             }
             else
-
                 exit(1);
         }
         break;
@@ -589,9 +492,7 @@ void booking()
         {
             s[d].third_seat -= num;
             save_flight();
-
             insertlink(s[d].book, num, name, rank);
-
             printf("订票成功！\n");
         }
         else
@@ -604,11 +505,9 @@ void booking()
             if (ch == 'y' || ch == 'Y')
             {
                 insertqueue(s[d].afterqueue, name, num);
-
                 printf("排队成功\n");
             }
             else
-
                 exit(1);
         }
         break;
@@ -618,7 +517,6 @@ void booking()
     }
 
     system("pause");
-
     system("cls");
 }
 
@@ -627,46 +525,33 @@ void insertlink(linklist head, int amount, char name[], int grade)
     static linklist p1, new1;
 
     new1 = (linklist)malloc(sizeof(booked));
-
     strcpy(new1->name, name);
-
     new1->bookednum = amount;
-
     new1->grade = grade;
 
     if (head->next == NULL)
-
         head->next = new1;
 
     else
-
         p1->next = new1;
 
     p1 = new1;
-
     new1->next = NULL;
 }
 
 void insertqueue(qnode head, char name[], int amount)
 {
     static qnode new2, p1;
-
     new2 = (qnode)malloc(sizeof(afterbook));
-
     strcpy(new2->name, name);
-
     new2->afternum = amount;
 
     if (head->next == NULL)
-
         head->next = new2;
-
     else
-
         p1->next = new2;
 
     p1 = new2;
-
     new2->next = NULL;
 }
 
@@ -678,9 +563,7 @@ void read_passenger()
     char a[15];
 
     printf("请输入要查询的航班号（例如1001）：");
-
     scanf("%s", a);
-
     printf("\t姓名\t票数\t等级\n");
 
     for (i = 0; i < m; i++)
@@ -688,14 +571,12 @@ void read_passenger()
         if (strcmp(a, s[i].num) == 0)
         {
             flag = 1;
-
             break;
         }
     }
     if (!flag)
     {
         printf("不存在该航班\n");
-
         exit(1);
     }
     linklist p = s[i].book->next;
@@ -703,7 +584,6 @@ void read_passenger()
     while (p != NULL)
     {
         printf("\t%s\t%d\t%d\n", p->name, p->bookednum, p->grade);
-
         p = p->next;
     }
 
@@ -720,21 +600,15 @@ void cancelbook()
     char a[15], b[15];
 
     printf("请输入您的的航班号（例如1001）：");
-
     scanf("%s", a);
-
     printf("请输入您的姓名：");
-
     scanf("%s", b);
-
     printf("请输入您的舱位等级：");
-
     scanf("%d", &n);
 
     for (i = 0; i < m; i++)
 
         if (strcmp(a, s[i].num) == 0)
-
         {
             flag = 1;
             break;
@@ -762,7 +636,6 @@ void cancelbook()
     {
     case 1:
         s[i].first_seat += s[i].book->next->bookednum;
-
         save_flight();
         break;
 
@@ -786,33 +659,28 @@ void cancelbook()
     while (p)
     {
         if (strcmp(p->name, b) == 0)
-
         {
             flag1 = 1;
             break;
         }
 
         pre = p;
-
         p = p->next;
     }
     if (p)
     {
         pre->next = p->next;
-
         free(p);
         printf("退票成功\n");
     }
 
     if (!flag)
-
     {
         printf("不存在该航班\n");
         exit(1);
     }
 
     if (!flag1)
-
     {
         printf("不存在该航班\n");
         exit(1);
@@ -825,7 +693,6 @@ void cancelbook()
     system("pause");
 
     if (!p1)
-
     {
         printf("该航班无等待顾客！");
     }
@@ -833,39 +700,28 @@ void cancelbook()
     else
     {
         temp = s[i].afterqueue->next;
-
         pre1->next = p1->next;
-
         // free(p1);
 
         new1 = (linklist)malloc(sizeof(booked));
-
         strcpy(new1->name, temp->name);
-
         new1->bookednum = temp->afternum;
-
         new1->grade = n;
-
         new1->next = pre->next;
-
         pre->next = new1;
 
         if (n == 1)
-
         {
             s[i].first_seat -= new1->bookednum;
             save_flight();
         }
 
         else if (n == 2)
-
         {
             s[i].second_seat -= new1->bookednum;
             save_flight();
         }
-
         else
-
         {
             s[i].third_seat -= new1->bookednum;
             save_flight();
@@ -886,11 +742,8 @@ int find()
     char t[15];
 
     printf("请输入您的出发日期按回车结束格式如（2015-06-14）：");
-
     scanf("%s", a);
-
     printf("请输入您的终点站：");
-
     scanf("%s", b);
 
     for (i = 0; i < m; i++)
@@ -916,17 +769,13 @@ int find()
     if (!flag1)
     {
         system("cls");
-
         printf("不存在该航班请重新输入\n");
-
         booking();
     }
     if (!flag2)
     {
         system("cls");
-
         printf("不存在该航班请重新输入\n");
-
         booking();
     }
 
@@ -943,11 +792,8 @@ int find()
             flag3 = 1;
 
             printf("您所选择的航班为：");
-
             printf("\n");
-
             replace_print(c[i]);
-
             return c[i];
         }
         i++;
@@ -955,9 +801,7 @@ int find()
     if (!flag3)
     {
         system("cls");
-
         printf("不存在该航班请重新输入\n");
-
         booking();
     }
 }
@@ -971,31 +815,24 @@ void add_flight() //-------------------添加航班信息---------------------
     if ((fp = fopen("air.txt", "ab")) == NULL)
     {
         printf("文本不能打开，出错！\n");
-
         exit(0);
     }
     printf("请输入航班号：");
-
     scanf("%s", s[m].num);
 
     printf("请输入起点站：");
-
     scanf("%s", s[m].start);
 
     printf("请输入终点站：");
-
     scanf("%s", s[m].over);
 
     printf("请输入起飞时间：");
-
     scanf("%s", s[m].starttime);
 
     printf("请输入预计到达时间：");
-
     scanf("%s", s[m].arrivaltime);
 
     printf("请输入一等舱价格：");
-
     scanf("%f", &s[m].price1);
 
     printf("请输入二等舱价格：");
@@ -1007,7 +844,6 @@ void add_flight() //-------------------添加航班信息---------------------
     scanf("%f", &s[m].price3);
 
     printf("请输入一等舱座位：");
-
     scanf("%d", &s[m].first_seat);
 
     printf("请输入二等舱座位：");
@@ -1055,7 +891,6 @@ void make()
         if (strcmp(s[i].num, b) == 0)
         {
             flag = 1;
-
             t = i;
         }
     }

@@ -11,11 +11,8 @@
 typedef struct booked_passenger
 {
     char name[20]; // 订票客户姓名
-
     int bookednum; // 该客户已订票数
-
     int grade; // 机舱等级
-
     struct booked_passenger *next; // 指向下一客户的
 
 } booked;
@@ -25,9 +22,7 @@ typedef booked *linklist;
 typedef struct after_passenger
 {
     char name[20]; // 等待客户姓名
-
     int afternum; // 该客户订票数
-
     struct after_passenger *next; // 指向下一客户的
 
 } afterbook;
@@ -37,31 +32,18 @@ typedef afterbook *qnode;
 typedef struct air
 {
     char num[10]; // 航班号
-
     long type; // 机型
-
     char start[10]; // 起点站名
-
     char over[20]; // 终点站名
-
     char starttime[20]; // 起飞时间
-
     char arrivaltime[20]; // 预计到达时间
-
     float price1; // 票价1
-
     float price2; // 票价2
-
     float price3; // 票价3
-
     int first_seat; // 一等座座位数
-
     int second_seat; // 二等座座位数
-
     int third_seat; // 三等座座位数
-
     linklist book; // 指向已订票客户的头结点指针
-
     qnode afterqueue; // 指向等待客户队列的指针
 
 } flight;
